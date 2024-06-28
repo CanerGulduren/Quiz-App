@@ -1,0 +1,44 @@
+{
+    "categories": [
+      {
+        "id": 9,
+        "name": "General Knowledge"
+      },
+      {
+        "id": 10,
+        "name": "Books"
+      },
+      {
+        "id": 11,
+        "name": "Films"
+      },
+      {
+        "id": 12,
+        "name": "Music"
+      },
+      {
+        "id": 15,
+        "name": "Video Games"
+      },
+      {
+        "id": 19,
+        "name": "Mathematics"
+      },
+      {
+        "id": 20,
+        "name": "Mythology"
+      },
+      {
+        "id": 22,
+        "name": "Geography"
+      },
+      {
+        "id": 23,
+        "name": "History"
+      },
+      {
+        "id": 26,
+        "name": "Celebrities"
+      }
+    ]
+  }
