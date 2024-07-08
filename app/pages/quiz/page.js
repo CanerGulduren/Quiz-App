@@ -37,7 +37,7 @@ function Quiz() {
         const newToken = await newTokenRequest();
         localStorage.setItem("triviaToken", newToken);  
         setTimeout(() => {
-          getQuizData();
+          fetchQuizData();
         }, 5000);
         break;
       case 5:
