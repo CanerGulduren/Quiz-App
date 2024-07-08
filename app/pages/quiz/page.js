@@ -1,8 +1,8 @@
 "use client";
 import { QuizContext } from "@/app/helpers/context/QuizProvider";
 import React, { useContext, useEffect, useState } from "react";
+import { fetchRequest, newTokenRequest, decodeQuizData } from "@/app/helpers";
 import QuestionCard from "@/app/components/quiz/QuestionCard";
-import { newTokenRequest, fetchRequest } from "@/app/helpers/api/request";
 import Loading from "./loading";
 import Error from "./error";
 
@@ -12,18 +12,19 @@ function Quiz() {
   const [quizData, setQuizData] = useState();
   const [error, setError] = useState(false);
   
-  const getQuizData = async () => {
+  const fetchQuizData = async () => {
     let token = localStorage.getItem("triviaToken");
-    const quizURL = `https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficulty}&type=multiple&token=${token}`;
+    const quizURL = `https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${difficulty}&token=${token}`;
     const getQuizData = await fetchRequest(quizURL);
-    await UrlResponse(getQuizData);
+    await handleApiResponse(getQuizData);
   };
 
-  const UrlResponse = async (url) => {
-    switch (url.response_code) {
+  const handleApiResponse = async (data) => {
+    switch (data.response_code) {
       case 0:
         console.log("Success. Returned results successfully.");
-        setQuizData(url.results);
+        const decodedQuizData = await decodeQuizData(data);
+        setQuizData(decodedQuizData);
         break;
       case 1:
       case 2:
@@ -51,7 +52,7 @@ function Quiz() {
   };
   
   useEffect(() => {
-    getQuizData();
+    fetchQuizData();
   }, []);
 
 
